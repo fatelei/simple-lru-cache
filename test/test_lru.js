@@ -29,6 +29,17 @@ describe("lru cache test", function () {
     });
   });
 
+  describe("test setex", function () {
+    it("should get null value", function (done) {
+      cache.clean();
+      cache.setex("test", "hello world", 1000);
+      setTimeout(function () {
+       assert.deepEqual(null, cache.get('test'));
+       done();
+      }, 2000);
+    });
+  });
+
   describe("test lru algthorim", function () {
     it("should be work", function () {
       cache.clean();
