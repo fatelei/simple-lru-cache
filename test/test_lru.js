@@ -32,7 +32,7 @@ describe("lru cache test", function () {
   describe("test setex", function () {
     it("should get null value", function (done) {
       cache.clean();
-      cache.setex("test", "hello world", 1000);
+      cache.setex("test", 1000, "hello world");
       setTimeout(function () {
        assert.deepEqual(null, cache.get('test'));
        done();
