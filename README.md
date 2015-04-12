@@ -1,5 +1,5 @@
-simple-lru-cache
-================
+Memory cache
+============
 
 a simple cache using lru algthorim
 
