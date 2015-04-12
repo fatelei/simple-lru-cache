@@ -1,5 +1,5 @@
 {
-  "name": "lrucache",
+  "name": "memoeycache",
   "version": "0.0.1",
   "description": "a simple cache using lru algthorim",
   "main": "index.js",
