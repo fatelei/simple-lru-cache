@@ -1,5 +1,3 @@
 // main entry
 
-var LRUCache = require("./lib/lru");
-
-module.exports = LRUCache;
+module.exports = require("./lib/lru");

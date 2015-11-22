@@ -1,7 +1,9 @@
 Memory storage
 ==============
 
-a simple memory storage using lru algthorim
+![Build Status](https://travis-ci.org/fatelei/simple-lru-cache.svg)
+
+A simple memory storage based [LRU](https://en.wikipedia.org/wiki/Cache_algorithms) algthorim.
 
 ## Install
 
@@ -9,31 +11,75 @@ a simple memory storage using lru algthorim
 npm install memory-storage
 ```
 
-## Usage
-```
-var MemoryStorage = require('memory-storage');
-var storage = new MemoryStorage(); // You can specific storage size, new MemoryStorage(100), default is 1000.
-
-storage.set('foo', 'bar');
-console.log(storage.get('foot'));
-```
-
-## test
-	make test
-
-## benchmark
-	node benchmark/benchmark.js
-
 ## APIs
 
-### set(key, value)
-Insert key/value pair to memory
+### LRUCache
 
-### setex(key, expire, value)
-Insert key/value pair to memory, it will be expired in expire(ms)
+Intialize a `LRUCache` instance.
 
-### reset
-Reset storage
++ size {Number}: cache size, default is 10
 
-### get(key) -> value
-Get value from storage by specific key.
+#### Usage
+
+```
+const LRUCache = require('memory-storage');
+const cache = new LRUCache();
+```
+
+or
+
+```
+const LRUCache = require('memory-storage');
+const cache = new LRUCache(100);
+```
+
+### set
+
+Set <k, v> to cache.
+
++ key {String}: key name
++ value {Any}: To be cached value
+
+#### Usage
+
+```
+cache.set('a', 1);  // Set number
+cache.set('a', {}); // Set object
+cache.set('a', []); // Set array
+cache.set('a', 'a'); // Set string
+```
+
+### get
+
+Get value by key, return real value or undefined.
+
++ key {String}: key name
+
+#### Usage
+
+```
+cache.get('foo');
+```
+
+### rpush
+
+Push `value` to named `key`'s array.
+
++ key {String}: key name
++ value {Any}: To be cached value
+
+#### Usage
+
+```
+cache.rpush('a', 'a');
+```
+
+## Test
+
+```
+jasmine
+```
+
+## TODO
+
++ support more apis like redis command.

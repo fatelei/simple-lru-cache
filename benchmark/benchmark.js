@@ -1,21 +1,22 @@
 // benchmark
+'use strict';
 
-var LRUCache = require("../index");
+const LRUCache = require("../index");
 
-var N = 10000;
-var cache = new LRUCache(N);
+const N = 10000;
+const cache = new LRUCache(N);
 
 
-var benchmark = function (func) {
-  var start = process.hrtime();
-  var sm = process.memoryUsage();
+const benchmark = function (func) {
+  let start = process.hrtime();
+  let sm = process.memoryUsage();
   func();
-  var diff = process.hrtime(start);
-  var em = process.memoryUsage();
+  let diff = process.hrtime(start);
+  let em = process.memoryUsage();
 
-  var usedMem = em.rss - sm.rss;
-  var heapTotal = em.heapTotal - sm.heapTotal;
-  var heapUsed = em.heapUsed - sm.heapUsed;
+  let usedMem = em.rss - sm.rss;
+  let heapTotal = em.heapTotal - sm.heapTotal;
+  let heapUsed = em.heapUsed - sm.heapUsed;
 
   console.log("Memory Used: " + (usedMem/1024) + "KB");
   console.log("Heap Total: " + (heapTotal/1024) + "KB");
@@ -25,20 +26,14 @@ var benchmark = function (func) {
 
 benchmark(function () {
   console.log("------set benchmark---------");
-  for (var i = 0; i < N; i++) {
+  for (let i = 0; i < N; i++) {
     cache.set('test' + i, i);
   }
 });
 
 benchmark(function () {
   console.log("------get benchmark----------");
-  for (var i = 0; i < N; i++) {
+  for (let i = 0; i < N; i++) {
     cache.get('test' + i);
   }
 });
-
-benchmark(function () {
-  console.log("------clean benchmark----------");
-  cache.clean();
-});
-
