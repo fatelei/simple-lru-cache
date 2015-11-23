@@ -49,6 +49,20 @@ cache.set('a', []); // Set array
 cache.set('a', 'a'); // Set string
 ```
 
+### setex
+
+Set <k, v> to cache and add expire time(seconds).
+
++ key {String}: key name
++ value {Any}: to be cached value
++ expire {Number}: expire seconds
+
+#### Usage
+
+```
+cache.set('a', 1, 100);
+```
+
 ### get
 
 Get value by key, return real value or undefined.

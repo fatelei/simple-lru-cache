@@ -65,4 +65,28 @@ describe('Test LRUCache', function () {
       expect(cache.get('a').length).toBe(2);
     });
   });
+
+  describe('Test call setex method', function () {
+    describe('pass `expire` not a number', function () {
+      it('should occur error', function () {
+        let cache = new LRUCache(100);
+        const foo = () => {
+          cache.setex('a', 'b');
+        };
+
+        expect(foo).toThrow();
+      });
+    });
+
+    describe('pass right expire', function () {
+      it('should pass', function (done) {
+        let cache = new LRUCache(100);
+        cache.setex('a', 'b', 100);
+        setTimeout(() => {
+          expect(cache.get('a')).toBe(undefined);
+          done();
+        }, 1000);
+      });
+    });
+  });
 });
