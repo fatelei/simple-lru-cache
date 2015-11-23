@@ -101,10 +101,23 @@ describe('Test LRUCache', function () {
       });
     });
 
-    describe('pass `expire` not a number', function () {
+    describe('pass `expire` is a number', function () {
       it('should occur error', function (done) {
         let cache = new LRUCache(100);
         cache.set('a', 1);
+        cache.expire('a', 10);
+        setTimeout(() => {
+          expect(cache.get('a')).toBe(undefined);
+          done();
+        }, 20);
+      });
+    });
+
+    describe('call `expire` repeat', function () {
+      it('should occur error', function (done) {
+        let cache = new LRUCache(100);
+        cache.set('a', 1);
+        cache.expire('a', 10);
         cache.expire('a', 10);
         setTimeout(() => {
           expect(cache.get('a')).toBe(undefined);
