@@ -63,6 +63,19 @@ Set <k, v> to cache and add expire time(seconds).
 cache.set('a', 1, 100);
 ```
 
+### expire
+
+Expire key in seconds
+
++ key {String}: key name
++ expire {Number}: expire seconds
+
+#### Usage
+
+```
+cache.expire('a', 100);
+```
+
 ### get
 
 Get value by key, return real value or undefined.

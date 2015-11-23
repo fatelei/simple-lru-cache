@@ -89,4 +89,28 @@ describe('Test LRUCache', function () {
       });
     });
   });
+
+  describe('Test call expire method', function () {
+    describe('pass `expire` not a number', function () {
+      it('should occur error', function () {
+        let cache = new LRUCache(100);
+        const foo = () => {
+          cache.expire(a);
+        };
+        expect(foo).toThrow();
+      });
+    });
+
+    describe('pass `expire` not a number', function () {
+      it('should occur error', function (done) {
+        let cache = new LRUCache(100);
+        cache.set('a', 1);
+        cache.expire('a', 10);
+        setTimeout(() => {
+          expect(cache.get('a')).toBe(undefined);
+          done();
+        }, 20);
+      });
+    });
+  });
 });
