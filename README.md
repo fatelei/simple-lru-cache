@@ -101,6 +101,19 @@ Push `value` to named `key`'s array.
 cache.rpush('a', 'a');
 ```
 
+### rpop
+
+Pop `value` from named `key`'s array and return it.
+
++ key {String}: key name
+
+#### Usage
+
+```
+cache.rpush('a', 1);
+console.log(cache.rpop('a'));
+```
+
 ## Test
 
 ```

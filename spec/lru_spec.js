@@ -125,5 +125,28 @@ describe('Test LRUCache', function () {
         }, 20);
       });
     });
+
+    describe('call `rpop` method', function () {
+      describe('rpop an invalid type', function () {
+        it('should occur error', function () {
+          let cache = new LRUCache(100);
+          const foo = () => {
+            cache.set('a', 1);
+            cache.rpop('a');
+          }
+          expect(foo).toThrow();
+        });
+      });
+
+      describe('rpop an valid type', function () {
+        it('should pass', function () {
+          let cache = new LRUCache(100);
+          cache.rpush('a', 1);
+          let a = cache.rpop('a');
+          expect(a).toBe(1);
+          expect(cache.get('a').length).toBe(0);
+        });
+      });
+    });
   });
 });
